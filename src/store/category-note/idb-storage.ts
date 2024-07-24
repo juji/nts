@@ -1,5 +1,5 @@
 import { createConnection, TABLES } from '~/lib/jsstore'
-import type { NotesCategory, NoteItem, Note } from '../types'
+import type { NoteCategory, NoteItem, Note } from '../types'
 import { LSKEY } from './ls-key'
 import { StateCreator } from 'zustand'
 
@@ -14,8 +14,12 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
   // get last active note
   // set it on the store
   const conn = createConnection()
-  conn.select<NotesCategory>({
-    from: TABLES.CATEGORY
+  conn.select<NoteCategory>({
+    from: TABLES.CATEGORY,
+    order: {
+      by: 'created',
+      type: 'asc'
+    }
   }).then(async categories => {
 
     if(categories.length){
@@ -29,10 +33,14 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
       const notes = await conn.select<NoteItem>({
         from: TABLES.CATEGORY_NOTES,
         where: {
-          categoryId: categories[activeCatIndex].id
+          categoryId: categories[activeCatIndex].id,
+          deleted: 0
+        },
+        order: {
+          by: 'created',
+          type: 'desc'
         }
       })
-
       
       function findActiveNote( noteList: NoteItem[] ): NoteItem|null{
         if(!noteList) return null
@@ -41,6 +49,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         
         const noteItems = noteList
         for(let i in noteItems){
+          if(noteItems[i].deleted) continue;
           if(noteItems[i].id === lastActiveNote) return noteItems[i]
           if(noteItems[i].notes) {
             const child = findActiveNote( noteItems[i].notes )
@@ -56,7 +65,8 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         const n = await conn.select<Note>({
           from: TABLES.NOTES,
           where: {
-            id: activeNote.id
+            id: activeNote.id,
+            deleted: 0
           }
         })
         if(!n || !n.length){
@@ -68,6 +78,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
       }
       
       conn.terminate();
+
       set({
         hydrated: true,
         categories,
@@ -86,6 +97,9 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
 
     }
     
+  }).catch(e => {
+    console.error('error on setting up')
+    console.error(e)
   })
 
   return f(set, get, store)

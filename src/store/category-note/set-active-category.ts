@@ -1,29 +1,30 @@
-import type { NotesCategoryState } from '.'
-import type { NotesCategory, NoteItem, Note } from '../types'
+import type { Set } from '.'
+import type { NoteCategory, NoteItem, Note } from '../types'
 import { createConnection, TABLES } from '~/lib/jsstore'
 import { LSKEY } from './ls-key'
 
-type Set = (
-  nextStateOrUpdater: (state:NotesCategoryState) => void, 
-  shouldReplace?: boolean | undefined
-) => void
-
 export function setActiveCategory( set: Set ){
 
-  return async ( category: NotesCategory ) => {
+  return async ( category: NoteCategory ) => {
     const conn = createConnection()
     
     const notes = await conn.select<NoteItem>({
       from: TABLES.CATEGORY_NOTES,
       where: {
-        categoryId: category.id
+        categoryId: category.id,
+        deleted: 0
+      },
+      order: {
+        by: 'created',
+        type: 'desc'
       }
     })
     
     const note = await conn.select<Note>({
       from: TABLES.NOTES,
       where: {
-        id: notes[0].id
+        id: notes[0].id,
+        deleted: 0
       }
     })
     

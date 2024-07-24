@@ -1,11 +1,5 @@
-import type { NotesCategoryState } from '.'
+import type { Set } from '.'
 import { createConnection, TABLES } from '~/lib/jsstore'
-
-
-type Set = (
-  nextStateOrUpdater: (state:NotesCategoryState) => void, 
-  shouldReplace?: boolean | undefined
-) => void
 
 export function updateTitle( set: Set ){
 
@@ -16,19 +10,23 @@ export function updateTitle( set: Set ){
       conn.update({
         in: TABLES.NOTES,
         set: {
-          title: noteTitle
+          title: noteTitle,
+          updated: new Date()
         },
         where: {
-          id
+          id,
+          deleted: 0
         }
       }),
       conn.update({
         in: TABLES.CATEGORY_NOTES,
         set: {
-          title: noteTitle
+          title: noteTitle,
+          updated: new Date()
         },
         where: {
-          id
+          id,
+          deleted: 0
         }
       })
     ])

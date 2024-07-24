@@ -1,12 +1,6 @@
 import { nanoid } from 'nanoid'
-import type { NotesCategoryState } from '.'
+import type { Set } from '.'
 import { createConnection, TABLES } from '~/lib/jsstore'
-
-
-type Set = (
-  nextStateOrUpdater: (state:NotesCategoryState) => void, 
-  shouldReplace?: boolean | undefined
-) => void
 
 export function addCategory( set: Set ){
 
@@ -15,7 +9,8 @@ export function addCategory( set: Set ){
     const data = {
       id: nanoid(),
       name: categoryTitle,
-      created: new Date()
+      created: new Date(),
+      deleted: 0 as 0 // why tho?
     }
   
     const conn = createConnection()

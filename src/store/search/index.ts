@@ -3,7 +3,7 @@ import { createWithSignal } from 'solid-zustand'
 import { immer } from 'zustand/middleware/immer'
 import type { Note, NoteItem } from '../types'
 
-export type NotesCategoryState = {
+export type NoteCategoryState = {
   text: string
   result: Note[]
   index: { [key:string]: NoteItem }
@@ -11,7 +11,7 @@ export type NotesCategoryState = {
   setText: ( str: string ) => void
 }
 
-export const useCategoryNoteStore = createWithSignal<NotesCategoryState>()(
+export const useCategoryNoteStore = createWithSignal<NoteCategoryState>()(
   immer((set) => ({
     text: '',
     result: [],

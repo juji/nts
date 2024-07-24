@@ -1,12 +1,6 @@
-import type { NotesCategoryState } from '.'
+import type { Set } from '.'
 import type { NoteItem, Note } from '../types'
 import { createConnection, TABLES } from '~/lib/jsstore'
-
-
-type Set = (
-  nextStateOrUpdater: (state:NotesCategoryState) => void, 
-  shouldReplace?: boolean | undefined
-) => void
 
 export function setActiveNote( set: Set ){
 
@@ -16,7 +10,8 @@ export function setActiveNote( set: Set ){
     const notes = await conn.select<Note>({
       from: TABLES.NOTES,
       where: {
-        id: note.id
+        id: note.id,
+        deleted: 0
       }
     })
     conn.terminate();

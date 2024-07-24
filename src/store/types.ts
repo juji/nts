@@ -8,13 +8,15 @@ export type Note = {
   keywords?: string[]
   created: Date
   updated?: Date
+  deleted: Date | 0
 }
 
-export type NotesCategory = {
+export type NoteCategory = {
   id: string
   name: string
   created: Date
   updated?: Date
+  deleted: Date | 0
 }
 
 export type NoteItem = {
@@ -24,5 +26,6 @@ export type NoteItem = {
   notes?: NoteItem[]
   created: Date
   updated?: Date
+  deleted: Date | 0
 }
 
