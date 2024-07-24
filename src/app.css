@@ -1,0 +1,20 @@
+
+:root{
+
+  --bg-color: #171717;
+  --fg-color: #dddddd;
+
+}
+
+html{
+  color-scheme: dark;
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+}

@@ -1,0 +1,25 @@
+{
+  "name": "nts",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@juji/preflight": "^1.0.1",
+    "@solidjs/router": "^0.14.1",
+    "@solidjs/start": "^1.0.6",
+    "immer": "^10.1.1",
+    "jsstore": "^4.8.1",
+    "nanoid": "^5.0.7",
+    "solid-js": "^1.8.18",
+    "solid-zustand": "^1.8.1",
+    "vinxi": "^0.4.1",
+    "zustand": "^4.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
