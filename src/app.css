@@ -4,13 +4,11 @@
 
 :root{
 
-  --bg-color: #1e1e20;
   --fg-color: #d2d2d2;
+  --bg-color: #1e1e20;
   --bg-sidebar: #171717;
   --bg-overlay: rgba(0,0,0,0.5);
   --bg-code: #101010;
-
-  --color-placeholder: #696969;
 
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --font-size: 1.3rem;

@@ -15,10 +15,6 @@
   
   .headingContainer{
 
-    &:has(h1:empty) p {
-      display: none;
-    }
-
     p {
       max-width: 700px;
       margin: 0rem auto;
@@ -50,7 +46,7 @@
       }
     }
 
-    h1{
+    .textarea{
       max-width: 700px;
       margin: 3rem auto;
       margin-bottom: 1rem;
@@ -58,24 +54,34 @@
       position: relative;
       font-size: calc( 2 * var(--font-size));
       line-height: calc( 1.5 * var(--line-height));
+      min-height: calc( 2.5 * var(--line-height));
+      padding-bottom: 0.5rem;
+      line-break: anywhere;
 
       @media(min-width: 700px){
         font-size: calc( 3 * var(--font-size));
         line-height: calc( 2.1 * var(--line-height));
       }
 
-      &:empty:before {
-        content: "Title";
-        font-weight: inherit;
+      textarea{
+        line-break: anywhere;
         position: absolute;
-        left: 0px;
-        color: #424242;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        max-width: 100%;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100% !important;
+        outline: none;
+        border: none;
+        background-color: var(--bg-color);
+        scrollbar-width: none;
+        resize: none;
+
+        &::placeholder{
+          color: #424242;
+        }
       }
     }
+
   }
 
   .editorContainer{
