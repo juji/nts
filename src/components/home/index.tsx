@@ -1,7 +1,5 @@
-import { onPaste } from "~/lib/clean-clipboard-data"
 import styles from './style.module.css'
 import { Milkdown } from "../milkdown"
-import UAParser from 'ua-parser-js'
 import { createSignal } from "solid-js"
 
 function TitleEditable({
@@ -32,7 +30,6 @@ function TitleEditable({
     <textarea 
       placeholder="Title"
       value={content()}
-      onPaste={onPaste}
       onInput={onChangeLocal}></textarea>
   </div>
 
@@ -55,7 +52,7 @@ export default function Home(){
     <div class={styles.editorContainer}>
       <Milkdown 
         className={styles.editor} 
-        initialContent="Hello"
+        initialContent=""
       />
     </div>
   </div>

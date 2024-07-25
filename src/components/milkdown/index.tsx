@@ -29,6 +29,7 @@ import { trailing } from '@milkdown/plugin-trailing';
 import '@milkdown/theme-nord/style.css';
 import './style.css'
 import 'automad-prism-themes/dist/prism-night-owl.css'
+// import 'prism-themes/themes/prism-atom-dark.min.css'
 
 // math doesn't work
 // import { math } from '@milkdown/plugin-math';
@@ -36,10 +37,12 @@ import 'automad-prism-themes/dist/prism-night-owl.css'
 
 export const Milkdown = ({ 
   className,
-  initialContent = ''
+  onChange,
+  initialContent = '',
 }:{ 
   className: string
   initialContent?: string
+  onChange?: (str: string) => void
 }) => {
   
   let ref!: HTMLDivElement;
@@ -52,9 +55,9 @@ export const Milkdown = ({
         ctx.set(rootCtx, ref);
 
         const listener = ctx.get(listenerCtx);
-        listener.markdownUpdated((ctx, markdown, prevMarkdown) => {
+        listener.markdownUpdated((_, markdown, prevMarkdown) => {
           if (markdown !== prevMarkdown) {
-            console.log('markdown', markdown);
+            onChange && onChange(markdown)
           }
         })
 
