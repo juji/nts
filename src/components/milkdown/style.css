@@ -24,7 +24,7 @@
 
   &.milkdown-theme-nord blockquote {
     border-left-width: 2px;
-    border-color: orange;
+    border-color: var(--blockquote-color);
   }
 }
 
