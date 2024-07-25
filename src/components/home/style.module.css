@@ -79,7 +79,7 @@
         resize: none;
 
         &::placeholder{
-          color: #424242;
+          color: var(--title-placeholder-color);
         }
       }
     }

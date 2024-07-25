@@ -17,7 +17,7 @@
       content: "Content\0000a0here.. You\0000a0can\0000a0use\0000a0Markdown";
       position: absolute;
       left: 0px;
-      color: #505050;
+      color: var(--content-placeholder-color);
       max-width: 100%;
     }
   }

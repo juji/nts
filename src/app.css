@@ -10,6 +10,9 @@
   --bg-overlay: rgba(0,0,0,0.5);
   --bg-code: #101010;
 
+  --title-placeholder-color: #424242;
+  --content-placeholder-color: #505050;
+
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --font-size: 1.3rem;
   --letter-spacing: normal;
