@@ -1,5 +1,121 @@
 
 
 .container{
+
+  position: relative;
+  height: 100%;
+
+  @media (min-width: 900px){
+    display: grid;
+    grid-template-columns: 340px 1fr;
+  }
+
+  & > .overlay{
+    background-color: var(--bg-overlay);
+    position: absolute;
+    width: 0%;
+    height: 0%;
+    top:0;
+    left:0;
+    z-index: 999;
+    transition: opacity 200ms 200ms ease-out, width 0ms 400ms, height 0ms 400ms;
+    opacity: 0;
+
+    &.open{
+      width: 100%;
+      height: 100%;
+      transition: opacity 200ms 0ms ease-out, width 0ms 0ms, height 0ms 0ms;
+      opacity: 1;
+    }
+
+    @media (min-width: 900px){
+      width: 0%;
+      height: 0%;
+      opacity: 0;
+      z-index: 0;
+      &.open{
+        width: 0%;
+        height: 0%;
+        opacity: 0;
+      }
+    }
+  }
+
+  & > aside{
+    z-index: 1000;
+    position: absolute;
+    width: 70%;
+    min-width: calc(100% - 55px);
+    height: 100%;
+    top:0;
+    background-color: var(--bg-sidebar);
+    transition: left 200ms 0ms ease-out;
+    left:-100%;
+    padding: 2rem;
+
+    & > header {
+      font-family: 'Pacifico';
+      font-size: 3rem;
+    }
+
+    @media (min-width: 400px){
+      min-width: 340px;
+      max-width: 340px;
+    }
+
+    @media (min-width: 900px){
+      position: relative;
+      left: 0%;
+      z-index: 0;
+    }
+
+    &.open{
+      transition: left 200ms 200ms ease-out;
+      left:0%;
+    }
+  }
+
+  & > main{
+
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    & > header{
+      
+      display: grid;
+      position: sticky;
+      top:0;
+      grid-template-columns: 56px 1fr 56px;
+      backdrop-filter: blur(10px);
+      z-index: 1;
+
+      & > div {
+        padding: 1rem;
+      }
+
+      & > div:nth-child(1),
+      & > div:nth-child(3) {
+
+        & > button {
+          width: 24px;
+          height: 24px;
+
+          &:active{
+            opacity: 0.5;
+          }
+        }
+      }
+
+      & > div:nth-child(2){
+        font-family: 'Pacifico';
+        text-align: center;
+      }
+
+      @media (min-width: 900px){
+        display: none;
+      }  
+    }
+  }
   
 }

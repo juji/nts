@@ -1,0 +1,18 @@
+
+
+.milkdown {
+  height: 100%;
+}
+
+.editor {
+  outline: none;
+  height: 100%;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+pre[data-language]{
+  background-color: var(--bg-code);
+  padding: 1rem;
+  border-radius: 0.7rem;
+}

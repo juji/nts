@@ -1,34 +1,26 @@
-import { useCategoryNoteStore } from "~/store/category-note"
-import { For, Show } from "solid-js"
-
+import { onPaste } from "~/lib/clean-clipboard-data"
+import styles from './style.module.css'
+import { Milkdown } from "../milkdown"
 
 export default function Home(){
 
-  const categories = useCategoryNoteStore(state => state.categories)
-  const hydrated = useCategoryNoteStore(state => state.hydrated)
-  const addCategory = useCategoryNoteStore(state => state.addCategory)
+  return <div class={styles.container}>
 
-  function handleSubmit(e: SubmitEvent){
-    e.preventDefault()
-    const formData = new FormData(e.target as HTMLFormElement);
-    addCategory(formData.get('name') as string);
-    (e.target as HTMLFormElement).reset()
-  }
+    <Milkdown className={styles.editor} />
+    {/* <div class={styles.heading}>
+      <h1 contentEditable onPaste={onPaste}>This is main</h1>
+      <div class={styles.dates}>
+        <p>Created: date</p>
+        <p>Updated: date</p>
+      </div>
+    </div>
+    <div class={styles.content}>
 
-  return <main>
-    <h1>This is main</h1>
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="name" />
-      <button type="submit">Submit</button>
-    </form>
-
-    <Show when={hydrated()} fallback={<div>Loading...</div>}>
-      <For each={categories()}>
-        {(item, index) =>
-          <p>{JSON.stringify(item)}</p>
-        }
-      </For>
-    </Show>
-  </main>
+    </div>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p> */}
+  </div>
 
 }
