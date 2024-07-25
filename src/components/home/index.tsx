@@ -11,7 +11,9 @@ function TitleEditable({
 }){
 
   const [ content, setContent ] = createSignal(initialContent)
-  const splitContent = () => content().split('\n')
+
+  // manage spaces by adding character on empty
+  const splitContent = () => content() ? content().split('\n') : ['s']
 
   function onChangeLocal(e: InputEvent){
     const target = e.target as HTMLTextAreaElement
@@ -21,7 +23,7 @@ function TitleEditable({
 
   // https://codepen.io/shshaw/pen/bGNJJBE
   // https://css-tricks.com/auto-growing-inputs-textareas/
-  return <div class={styles.textarea}>
+  return <div class={styles.title}>
     {splitContent().map((v,i,a) => {
       return <>
         {v}{i === a.length-1 ? '' : <br />}

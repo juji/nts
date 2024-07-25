@@ -46,21 +46,23 @@
       }
     }
 
-    .textarea{
+    .title{
       max-width: 700px;
       margin: 3rem auto;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
       outline: none;
       position: relative;
       font-size: calc( 2 * var(--font-size));
       line-height: calc( 1.5 * var(--line-height));
-      min-height: calc( 2.5 * var(--line-height));
+      min-height: calc( 2 * var(--line-height));
       padding-bottom: 0.5rem;
       line-break: anywhere;
 
       @media(min-width: 700px){
         font-size: calc( 3 * var(--font-size));
         line-height: calc( 2.1 * var(--line-height));
+        min-height: calc( 2.5 * var(--line-height));
+        padding-bottom: 1rem;
       }
 
       textarea{
