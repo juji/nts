@@ -36,10 +36,10 @@ import 'automad-prism-themes/dist/prism-night-owl.css'
 
 export const Milkdown = ({ 
   className,
-  defaultValue = ''
+  initialContent = ''
 }:{ 
   className: string
-  defaultValue?: string
+  initialContent?: string
 }) => {
   
   let ref!: HTMLDivElement;
@@ -58,8 +58,8 @@ export const Milkdown = ({
           }
         })
 
-        if(defaultValue)
-          ctx.set(defaultValueCtx, defaultValue);
+        if(initialContent)
+          ctx.set(defaultValueCtx, initialContent);
 
         ctx.set(prismConfig.key, {
           configureRefractor: (refractor) => {
@@ -93,7 +93,7 @@ export const Milkdown = ({
       .use(gfm)
       .use(trailing)
       .create();
-    console.log(editor)
+
   });
 
   onCleanup(() => {

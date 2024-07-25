@@ -9,6 +9,18 @@
   height: 100%;
   font-size: var(--font-size);
   line-height: var(--line-height);
+  
+  & > p:only-child:has(br:only-child){
+    position: relative;
+
+    &:before {
+      content: "Content\0000a0here.. You\0000a0can\0000a0use\0000a0Markdown";
+      position: absolute;
+      left: 0px;
+      color: #505050;
+      max-width: 100%;
+    }
+  }
 }
 
 pre[data-language]{

@@ -2,8 +2,88 @@
 
 .container{
 
-  .editor{
-    height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  & > div{
+    padding: 0 2rem;
+
+    @media(min-width: 500px){
+      padding: 0 4rem;
+    }
+  }
+  
+  .headingContainer{
+
+    &:has(h1:empty) p {
+      display: none;
+    }
+
+    p {
+      max-width: 700px;
+      margin: 0rem auto;
+      padding-top: 1rem;
+      padding-bottom: 3rem;
+      color: #727272;
+      font-size: 0.9rem;
+
+      & > span{
+        display: block;
+
+        &:nth-child(2){
+          display: none;
+        }
+      }
+      @media(min-width: 700px){
+        font-size: 1rem;
+
+      }
+
+      @media(min-width: 500px){
+        & > span {
+          display: inline;
+  
+          &:nth-child(2){
+            display: inline;
+          }
+        }
+      }
+    }
+
+    h1{
+      max-width: 700px;
+      margin: 3rem auto;
+      margin-bottom: 1rem;
+      outline: none;
+      position: relative;
+      font-size: calc( 2 * var(--font-size));
+      line-height: calc( 1.5 * var(--line-height));
+
+      @media(min-width: 700px){
+        font-size: calc( 3 * var(--font-size));
+        line-height: calc( 2.1 * var(--line-height));
+      }
+
+      &:empty:before {
+        content: "Title";
+        font-weight: inherit;
+        position: absolute;
+        left: 0px;
+        color: #424242;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .editorContainer{
+    .editor{
+      height: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
   }
 
 }

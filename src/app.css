@@ -10,10 +10,12 @@
   --bg-overlay: rgba(0,0,0,0.5);
   --bg-code: #101010;
 
+  --color-placeholder: #696969;
+
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
-  --font-size: 1rem;
+  --font-size: 1.3rem;
   --letter-spacing: normal;
-  --line-height: 1.6rem;
+  --line-height: calc( 1.5 * var(--font-size) );
 
 }
 

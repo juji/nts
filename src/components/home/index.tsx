@@ -2,25 +2,25 @@ import { onPaste } from "~/lib/clean-clipboard-data"
 import styles from './style.module.css'
 import { Milkdown } from "../milkdown"
 
+
 export default function Home(){
 
   return <div class={styles.container}>
 
-    <Milkdown className={styles.editor} />
-    {/* <div class={styles.heading}>
-      <h1 contentEditable onPaste={onPaste}>This is main</h1>
-      <div class={styles.dates}>
-        <p>Created: date</p>
-        <p>Updated: date</p>
-      </div>
+    <div class={styles.headingContainer}>
+      <h1 contentEditable onPaste={onPaste}></h1>
+      <p>
+        <span>{new Date().toLocaleString()}</span>
+        <span>&nbsp;&nbsp;︱&nbsp;&nbsp;</span>
+        <span>Updated: {new Date().toLocaleString()}</span>
+      </p>
     </div>
-    <div class={styles.content}>
-
+    <div class={styles.editorContainer}>
+      <Milkdown 
+        className={styles.editor} 
+        initialContent="Hello"
+      />
     </div>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum alias iste vel, sapiente, autem eligendi, facilis ad earum dolor quia dolore blanditiis eveniet esse tenetur nihil? Necessitatibus dicta rerum cum.</p> */}
   </div>
 
 }
