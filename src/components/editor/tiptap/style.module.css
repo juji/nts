@@ -2,24 +2,36 @@
 
 .tiptapMenu{
 
-  border: 1px solid #545454;
-  padding: 0.4rem;
+  border: 1px solid #bb5316;
+  padding: 0.6rem;
   border-radius: 0.5rem;
-  display: grid;
+  display: flex;
   gap: 0.4rem;
+
+  background: rgba( 255, 255, 255, 0 );
+  backdrop-filter: blur( 12.5px );
+  -webkit-backdrop-filter: blur( 12.5px );
+  border-radius: 0.5rem;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 
   button{
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.2rem;
+    padding: 0.4rem;
+
+    &:hover{
+      outline: 1px solid rgba(152, 152, 152, 0.7);
+    }
 
     &.active{
-      background-color: #e88000;
+      outline: 1px solid rgba(255, 149, 0, 0.7);
     }
 
     svg{
-      fill: currentColor;
+      width: 24px;
+      height: 24px;
     }
   }
 

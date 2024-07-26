@@ -29,6 +29,7 @@
     "@tiptap/extension-bold": "^2.5.6",
     "@tiptap/extension-bubble-menu": "^2.5.6",
     "@tiptap/extension-placeholder": "^2.5.6",
+    "@tiptap/extension-underline": "^2.5.6",
     "@tiptap/pm": "^2.5.6",
     "@tiptap/starter-kit": "^2.5.6",
     "automad-prism-themes": "^0.3.1",
