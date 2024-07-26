@@ -8,16 +8,23 @@
   --bg-code: #101010;
 
   --color-danger: rgb(255, 123, 123);
-
+  --color-muted: #898989;
+  --color-primary: orange;
+  --color-secondary: rgb(89, 161, 255);
+  
   --title-placeholder-color: #424242;
-  --content-placeholder-color: #505050;
+  --content-placeholder-color: #636363;
   --blockquote-color: orange;
-  --date-color: #727272;
+  --date-color: #898989;
+  --new-category-border: #444;
+  --new-category-border-focus: #666;
+  --category-sel-background: #1d1d1d;
 
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --font-size: 1.3rem;
   --letter-spacing: 0.02rem;
   --line-height: calc( 1.5 * var(--font-size) );
+  --sidebar-padding: 2rem;
 
 }
 

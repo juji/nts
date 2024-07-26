@@ -3,6 +3,7 @@ import styles from './style.module.css'
 import { createEffect, createSignal } from "solid-js";
 import cx from "classix";
 import { showError } from "~/lib/toast";
+import { NoteCategory } from "~/store/types";
 
 function NewForm({ onDone }:{ onDone: () => void }){
   const categories = useCategoryNoteStore(state => state.categories)
@@ -39,10 +40,62 @@ function NewForm({ onDone }:{ onDone: () => void }){
 
 }
 
-export function Category(){
+function Selection(){
 
   const categories = useCategoryNoteStore(state => state.categories)
   const hydrated = useCategoryNoteStore(state => state.hydrated)
+  const setActiveCategory = useCategoryNoteStore(state => state.setActiveCategory)
+  const activeCategory = useCategoryNoteStore(state => state.activeCategory)
+  const removeCategory = useCategoryNoteStore(state => state.removeCategory)
+
+  const [ open, setOpen ] = createSignal(!activeCategory())
+  const [ edit, setEdit ] = createSignal<NoteCategory|null>(null)
+  const [ remove, setRemove ] = createSignal<NoteCategory|null>(null)
+
+  function removeCat(c: NoteCategory){
+    removeCategory(c)
+    .catch(e => {
+      showError(e.toString())
+    })
+  }
+
+  return <div class={styles.selection}>
+    { categories().length ? <>
+      <div class={styles.selectionBox}>
+        <button onClick={() => categories().length > 1 ? setOpen(!open()) : null}>
+          <span>{activeCategory() ? activeCategory()?.name : <span>select category</span>}</span>
+          <svg class={cx(open() && styles.open)} fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M5.22 8.22a.749.749 0 0 0 0 1.06l6.25 6.25a.749.749 0 0 0 1.06 0l6.25-6.25a.749.749 0 1 0-1.06-1.06L12 13.939 6.28 8.22a.749.749 0 0 0-1.06 0Z"></path></svg>
+        </button>
+      </div>
+      <div class={cx(styles.selectionList, open() && styles.open)}>
+        <div>
+          {hydrated() ? categories().map(v => (
+            <div class={styles.selectionItem}>
+              <button 
+                onClick={() => {
+                  setActiveCategory(v)
+                  setOpen(false)
+                }}>{v.name}</button>
+              <button 
+                onClick={() => setEdit(v)}>
+                  <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M17.263 2.177a1.75 1.75 0 0 1 2.474 0l2.586 2.586a1.75 1.75 0 0 1 0 2.474L19.53 10.03l-.012.013L8.69 20.378a1.753 1.753 0 0 1-.699.409l-5.523 1.68a.748.748 0 0 1-.747-.188.748.748 0 0 1-.188-.747l1.673-5.5a1.75 1.75 0 0 1 .466-.756L14.476 4.963ZM4.708 16.361a.26.26 0 0 0-.067.108l-1.264 4.154 4.177-1.271a.253.253 0 0 0 .1-.059l10.273-9.806-2.94-2.939-10.279 9.813ZM19 8.44l2.263-2.262a.25.25 0 0 0 0-.354l-2.586-2.586a.25.25 0 0 0-.354 0L16.061 5.5Z"></path></svg>
+                </button>
+              <button 
+                onClick={() => removeCat(v)}>
+                  <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M5.72 5.72a.75.75 0 0 1 1.06 0L12 10.94l5.22-5.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L13.06 12l5.22 5.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L12 13.06l-5.22 5.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.94 12 5.72 6.78a.75.75 0 0 1 0-1.06Z"></path></svg>
+                </button>
+            </div>
+          )) : null}
+        </div>
+      </div>
+    </> : <p class={styles.emptyCategory}>Create category to start</p> }
+    
+  </div>
+
+}
+
+export function Category(){
+
 
   const [ newForm, setNewForm ] = createSignal(false)
   const [ formVisible, setFormVisible ] = createSignal(false)
@@ -68,6 +121,6 @@ export function Category(){
         {formVisible() ? <NewForm onDone={() => setNewForm(false)} /> : null}
       </div>
     </div>
-    {hydrated() ? categories().map(v => <p>{v.name}</p>) : null}
+    <Selection />
   </div>
 }

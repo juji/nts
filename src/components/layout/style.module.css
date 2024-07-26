@@ -48,7 +48,7 @@
     background-color: var(--bg-sidebar);
     transition: left 200ms 0ms ease-out;
     left:-100%;
-    padding: 2rem;
+    padding: var(--sidebar-padding);
 
     & > header {
       font-family: 'Pacifico';

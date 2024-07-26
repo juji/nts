@@ -20,19 +20,15 @@ export function setActiveCategory( set: Set ){
       }
     })
     
-    const note = await conn.select<Note>({
+    const note = notes.length ? await conn.select<Note>({
       from: TABLES.NOTES,
       where: {
         id: notes[0].id,
         deleted: DEFAULT_DELETED
       }
-    })
+    }) : null
      
     conn.terminate();
-    
-    if(!note || !note.length){
-      throw new Error('Note not found')
-    }
 
     set(state => {
       setLastActiveCategory(category.id)
