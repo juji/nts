@@ -20,7 +20,7 @@
       margin: 0rem auto;
       padding-top: 1rem;
       padding-bottom: 3rem;
-      color: #727272;
+      color: var(--date-color);
       font-size: 0.9rem;
 
       & > span{

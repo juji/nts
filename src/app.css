@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root{
 
@@ -13,6 +10,7 @@
   --title-placeholder-color: #424242;
   --content-placeholder-color: #505050;
   --blockquote-color: orange;
+  --date-color: #727272;
 
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --font-size: 1.3rem;

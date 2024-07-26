@@ -1,15 +1,14 @@
 import { createSignal, ParentProps } from "solid-js";
+import { A } from "@solidjs/router";
 import styles from './style.module.css'
 import { cx } from "classix";
-import { useCategoryNoteStore } from "~/store/category-note";
 
+import { clientOnly } from "@solidjs/start";
+const Menu = clientOnly(() => import('~/components/menu'))
 
 export default function Layout( props: ParentProps ){
 
   const [open, setOpen] = createSignal(false)
-  const categories = useCategoryNoteStore(state => state.categories)
-  const hydrated = useCategoryNoteStore(state => state.hydrated)
-  const addCategory = useCategoryNoteStore(state => state.addCategory)
 
   return <div class={styles.container}>
       <div class={cx(
@@ -20,11 +19,9 @@ export default function Layout( props: ParentProps ){
       ></div>
       <aside class={cx(open() && styles.open)}>
         <header>
-          Nts.
+          <A href="/">Nts.</A>
         </header>
-        <div class={styles.menu}>
-
-        </div>
+        <Menu />
       </aside>
       <main>
         <header>
@@ -36,7 +33,7 @@ export default function Layout( props: ParentProps ){
             </button>
           </div>
           <div>
-            Nts.
+            <A href="/">Nts.</A>
           </div>
           <div></div>
         </header>
