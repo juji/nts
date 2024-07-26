@@ -1,5 +1,3 @@
-import { clientOnly } from "@solidjs/start";
-
-const Home = clientOnly(() => import('~/components/home'))
+import Home from '~/components/home'
 
 export default Home

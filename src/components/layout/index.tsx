@@ -2,9 +2,7 @@ import { createSignal, ParentProps } from "solid-js";
 import { A } from "@solidjs/router";
 import styles from './style.module.css'
 import { cx } from "classix";
-
-import { clientOnly } from "@solidjs/start";
-const Menu = clientOnly(() => import('~/components/menu'))
+import Menu from '~/components/menu'
 
 export default function Layout( props: ParentProps ){
 

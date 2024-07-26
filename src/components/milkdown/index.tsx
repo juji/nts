@@ -27,9 +27,9 @@ import sql from 'refractor/lang/sql'
 import { trailing } from '@milkdown/plugin-trailing';
 
 import '@milkdown/theme-nord/style.css';
-import './style.css'
 import 'automad-prism-themes/dist/prism-night-owl.css'
 // import 'prism-themes/themes/prism-atom-dark.min.css'
+import './style.css'
 
 // math doesn't work
 // import { math } from '@milkdown/plugin-math';

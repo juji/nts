@@ -1,14 +1,12 @@
 
 import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-
-import Layout from '~/components/layout'
-
 import '@juji/preflight/min.css'
 import "./app.css";
 
+// import Layout from '~/components/layout'
 import { clientOnly } from "@solidjs/start";
-// const Layout = clientOnly(() => import('~/components/layout'))
+const Layout = clientOnly(() => import('~/components/layout'))
 
 export default function App() {
 
