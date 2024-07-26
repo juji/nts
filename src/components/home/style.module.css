@@ -4,6 +4,7 @@
 
   display: grid;
   grid-template-rows: auto 1fr;
+  letter-spacing: var(--letter-spacing);
 
   & > div{
     padding: 0 2rem;

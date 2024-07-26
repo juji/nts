@@ -1,7 +1,7 @@
 import type { Set } from '.'
 import type { NoteCategory, NoteItem, Note } from '../types'
 import { createConnection, TABLES } from '~/lib/jsstore'
-import { LSKEY } from './ls-key'
+import { setLastActiveCategory, setLastActiveNote } from './last-active'
 
 export function setActiveCategory( set: Set ){
 
@@ -12,7 +12,7 @@ export function setActiveCategory( set: Set ){
       from: TABLES.CATEGORY_NOTES,
       where: {
         categoryId: category.id,
-        deleted: 0
+        deleted: 'null'
       },
       order: {
         by: 'created',
@@ -24,22 +24,22 @@ export function setActiveCategory( set: Set ){
       from: TABLES.NOTES,
       where: {
         id: notes[0].id,
-        deleted: 0
+        deleted: 'null'
       }
     })
-    
-    if(!note || !note.length){
-      console.error(`note not found:`)
-      console.error(notes[0])
-    }
+     
     conn.terminate();
     
+    if(!note || !note.length){
+      throw new Error('Note not found')
+    }
+
     set(state => {
-      localStorage.setItem(LSKEY.LAST_ACTIVE_CATEGORY, category.id)
+      setLastActiveCategory(category.id)
       state.activeCategory = category
       state.notes = notes
       if(note && note.length){
-        localStorage.setItem(LSKEY.LAST_ACTIVE_NOTE, note[0].id)
+        setLastActiveNote(note[0].id)
         state.activeNote = note[0]
       }
     })

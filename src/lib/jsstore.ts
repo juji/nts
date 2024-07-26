@@ -24,6 +24,7 @@ function getDatabase(){
       name: { notNull: true, dataType: DATA_TYPE.String },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },
       updated: { dataType: DATA_TYPE.DateTime },
+      deleted: { dataType: DATA_TYPE.DateTime },
     }
   }
   
@@ -37,6 +38,7 @@ function getDatabase(){
       notes: { dataType: DATA_TYPE.Array },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },
       updated: { dataType: DATA_TYPE.DateTime },
+      deleted: { dataType: DATA_TYPE.DateTime },
     }
   }
   
@@ -49,11 +51,13 @@ function getDatabase(){
       keywords: { dataType: DATA_TYPE.Array, multiEntry: true, enableSearch: true },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },
       updated: { dataType: DATA_TYPE.DateTime },
+      deleted: { dataType: DATA_TYPE.DateTime },
     }
   }
   
   const database: IDataBase = {
     name: 'nts',
+    version: 1,
     tables: [
       categoryTable,
       categoryNotesTable,

@@ -14,7 +14,7 @@ export function updateKeywords( set: Set ){
       },
       where: {
         id,
-        deleted: 0
+        deleted: 'null'
       }
     })
     

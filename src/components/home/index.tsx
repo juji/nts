@@ -1,5 +1,4 @@
 import styles from './style.module.css'
-// import { Milkdown } from "../milkdown"
 import { createSignal } from "solid-js"
 import { Editor } from '../editor/tiptap'
 

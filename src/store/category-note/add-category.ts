@@ -10,7 +10,6 @@ export function addCategory( set: Set ){
       id: nanoid(),
       name: categoryTitle,
       created: new Date(),
-      deleted: 0 as 0 // why tho?
     }
   
     const conn = createConnection()

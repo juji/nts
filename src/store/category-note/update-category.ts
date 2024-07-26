@@ -13,7 +13,7 @@ export function updateCategory( set: Set ){
       set: category,
       where: { 
         id: category.id,
-        deleted: 0 
+        deleted: 'null' 
       }
     })
     conn.terminate();

@@ -15,7 +15,7 @@ export function updateTitle( set: Set ){
         },
         where: {
           id,
-          deleted: 0
+          deleted: 'null'
         }
       }),
       conn.update({
@@ -26,7 +26,7 @@ export function updateTitle( set: Set ){
         },
         where: {
           id,
-          deleted: 0
+          deleted: 'null'
         }
       })
     ])

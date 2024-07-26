@@ -4,13 +4,17 @@ import { immer } from 'zustand/middleware/immer'
 import { IDbStorage } from './idb-storage'
 
 import type { NoteCategory, NoteItem, Note } from '../types'
+
 import { addCategory } from './add-category'
 import { updateCategory } from './update-category'
+import { removeCategory } from './remove-category'
+
 import { setActiveCategory } from './set-active-category'
 import { setActiveNote } from './set-active-note'
 import { updateTitle } from './update-title'
 import { updateContent } from './update-content'
 import { addNote } from './add-note'
+import { removeNote } from './remove-note'
 
 export type NoteCategoryState = {
   hydrated: boolean
@@ -20,11 +24,13 @@ export type NoteCategoryState = {
   notes: NoteItem[]
   addCategory: ( categoryTitle: string ) => Promise<void>
   updateCategory: ( category: NoteCategory ) => Promise<void>
+  removeCategory: (category: NoteCategory) => Promise<void>
   setActiveCategory: ( category: NoteCategory ) => Promise<void>
   setActiveNote: ( note: NoteItem ) => Promise<void>
   updateTitle: ( id: string, title: string ) => Promise<void>
   updateContent: ( id: string, content: string ) => Promise<void>
   addNote: ( category: NoteCategory ) => Promise<void>
+  removeNote: ( note: NoteCategory ) => Promise<void>
 }
 
 export type Set = (
@@ -43,10 +49,12 @@ export const useCategoryNoteStore = createWithSignal<NoteCategoryState>()(
       addCategory: addCategory(set),
       updateCategory: updateCategory(set),
       setActiveCategory: setActiveCategory(set),
+      removeCategory: removeCategory(set),
       setActiveNote: setActiveNote(set),
       updateTitle: updateTitle(set),
       updateContent: updateContent(set),
       addNote: addNote(set),
+      removeNote: removeNote(set)
     }))
   )
 )

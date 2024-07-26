@@ -11,7 +11,7 @@ export function addNote( set: Set ){
       id: nanoid(),
       title: '',
       created: new Date(),
-      deleted: 0,
+      deleted: 'null',
       categoryId: category.id
     }
 
@@ -19,7 +19,7 @@ export function addNote( set: Set ){
       id: note.id,
       title: '',
       created: note.created,
-      deleted: 0,
+      deleted: 'null',
       content: '',
       keywords: []
     }

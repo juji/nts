@@ -1,7 +1,7 @@
 import { createConnection, TABLES } from '~/lib/jsstore'
 import type { NoteCategory, NoteItem, Note } from '../types'
-import { LSKEY } from './ls-key'
 import { StateCreator } from 'zustand'
+import { getLastActiveCategory, getLastActiveNote } from './last-active'
 
 export type IDbStorageType = <T>(f: StateCreator<T, [], any[]>) => StateCreator<T, [], any[]>
 
@@ -16,6 +16,9 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
   const conn = createConnection()
   conn.select<NoteCategory>({
     from: TABLES.CATEGORY,
+    where: {
+      deleted: 'null'
+    },
     order: {
       by: 'created',
       type: 'asc'
@@ -24,8 +27,8 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
 
     if(categories.length){
 
-      const lastActiveCat = localStorage.getItem(LSKEY.LAST_ACTIVE_CATEGORY)
-      const lastActiveNote = localStorage.getItem(LSKEY.LAST_ACTIVE_NOTE)
+      const lastActiveCat = getLastActiveCategory()
+      const lastActiveNote = getLastActiveNote()
 
       let activeCatIndex = lastActiveCat ? categories.findIndex(v => v.id === lastActiveCat) : 0
       activeCatIndex = activeCatIndex < 0 ? 0 : activeCatIndex
@@ -34,7 +37,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         from: TABLES.CATEGORY_NOTES,
         where: {
           categoryId: categories[activeCatIndex].id,
-          deleted: 0
+          deleted: 'null'
         },
         order: {
           by: 'created',
@@ -66,7 +69,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
           from: TABLES.NOTES,
           where: {
             id: activeNote.id,
-            deleted: 0
+            deleted: 'null'
           }
         })
         if(!n || !n.length){

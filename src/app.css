@@ -14,7 +14,7 @@
 
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --font-size: 1.3rem;
-  --letter-spacing: normal;
+  --letter-spacing: 0.02rem;
   --line-height: calc( 1.5 * var(--font-size) );
 
 }
