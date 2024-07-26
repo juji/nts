@@ -1,5 +1,5 @@
 import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
-import type { NoteCategory, NoteItem, Note } from '../types'
+import type { NoteCategory, NoteLink, Note } from '../types'
 import { StateCreator } from 'zustand'
 import { getLastActiveCategory, getLastActiveNote } from './last-active'
 
@@ -27,12 +27,15 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
 
     if(categories.length){
 
+
+      // get state on last active session
       const lastActiveCat = getLastActiveCategory()
       const lastActiveNote = getLastActiveNote()
 
       let activeCatIndex = lastActiveCat ? categories.findIndex(v => v.id === lastActiveCat) : -1
 
-      const notes = activeCatIndex < 0 ? [] : await conn.select<NoteItem>({
+      // get notes based on last active category
+      const notes = activeCatIndex < 0 ? [] : await conn.select<NoteLink>({
         from: TABLES.CATEGORY_NOTES,
         where: {
           categoryId: categories[activeCatIndex].id,
@@ -44,7 +47,8 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         }
       })
       
-      function findActiveNote( noteList: NoteItem[] ): NoteItem|null{
+      // get the active note
+      function findActiveNote( noteList: NoteLink[] ): NoteLink|null{
         if(!noteList) return null
         if(!noteList.length) return null
         if(!lastActiveNote) return null
@@ -64,6 +68,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
       const activeNote = findActiveNote( notes )
       let note: Note|null = null
       if(activeNote){
+        
         const n = await conn.select<Note>({
           from: TABLES.NOTES,
           where: {
@@ -71,7 +76,10 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
             deleted: DEFAULT_DELETED
           }
         })
+
         if(!n || !n.length){
+          // this is not a fatal error
+          // just output to console
           console.error(`note not found: ${activeNote.id}`)
           console.error(activeNote)
         }else{

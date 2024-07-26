@@ -11,11 +11,11 @@ export type Note = {
   deleted?: Date
 }
 
-export type NoteItem = {
+export type NoteLink = {
   id: string
   categoryId: string
   title: string
-  notes?: NoteItem[]
+  notes?: NoteLink[]
   created: Date
   updated?: Date
   deleted?: Date

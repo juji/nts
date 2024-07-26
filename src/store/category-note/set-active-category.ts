@@ -1,5 +1,5 @@
 import type { Set } from '.'
-import type { NoteCategory, NoteItem, Note } from '../types'
+import type { NoteCategory, NoteLink, Note } from '../types'
 import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 import { setLastActiveCategory, setLastActiveNote } from './last-active'
 
@@ -8,7 +8,7 @@ export function setActiveCategory( set: Set ){
   return async ( category: NoteCategory ) => {
     const conn = createConnection()
     
-    const notes = await conn.select<NoteItem>({
+    const notes = await conn.select<NoteLink>({
       from: TABLES.CATEGORY_NOTES,
       where: {
         categoryId: category.id,

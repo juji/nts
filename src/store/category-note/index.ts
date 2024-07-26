@@ -3,7 +3,7 @@ import { createWithSignal } from 'solid-zustand'
 import { immer } from 'zustand/middleware/immer'
 import { IDbStorage } from './idb-storage'
 
-import type { NoteCategory, NoteItem, Note } from '../types'
+import type { NoteCategory, NoteLink, Note } from '../types'
 
 import { addCategory } from './add-category'
 import { updateCategory } from './update-category'
@@ -21,12 +21,12 @@ export type NoteCategoryState = {
   activeNote: Note | null
   activeCategory: NoteCategory | null
   categories: NoteCategory[]
-  notes: NoteItem[]
+  notes: NoteLink[]
   addCategory: ( categoryTitle: string ) => Promise<void>
   updateCategory: ( category: NoteCategory ) => Promise<void>
   removeCategory: (category: NoteCategory) => Promise<void>
   setActiveCategory: ( category: NoteCategory ) => Promise<void>
-  setActiveNote: ( note: NoteItem ) => Promise<void>
+  setActiveNote: ( note: NoteLink ) => Promise<void>
   updateTitle: ( id: string, title: string ) => Promise<void>
   updateContent: ( id: string, content: string ) => Promise<void>
   addNote: ( category: NoteCategory ) => Promise<void>

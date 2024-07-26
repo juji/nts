@@ -24,6 +24,7 @@
     "@milkdown/prose": "^7.4.0",
     "@milkdown/theme-nord": "^7.4.0",
     "@milkdown/transformer": "^7.4.0",
+    "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.14.1",
     "@solidjs/start": "^1.0.6",
     "@tiptap/core": "^2.5.6",

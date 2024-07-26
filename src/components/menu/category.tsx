@@ -111,7 +111,9 @@ function Selection(){
       <div class={styles.selectionBox}>
         <button onClick={() => categories().length > 1 ? setOpen(!open()) : null}>
           <span>{activeCategory() ? activeCategory()?.name : <span>select category</span>}</span>
-          <svg class={cx(open() && styles.open)} fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M5.22 8.22a.749.749 0 0 0 0 1.06l6.25 6.25a.749.749 0 0 0 1.06 0l6.25-6.25a.749.749 0 1 0-1.06-1.06L12 13.939 6.28 8.22a.749.749 0 0 0-1.06 0Z"></path></svg>
+          <svg 
+            class={cx(open() && styles.open, categories().length <= 1 && styles.inactive)} 
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M5.22 8.22a.749.749 0 0 0 0 1.06l6.25 6.25a.749.749 0 0 0 1.06 0l6.25-6.25a.749.749 0 1 0-1.06-1.06L12 13.939 6.28 8.22a.749.749 0 0 0-1.06 0Z"></path></svg>
         </button>
       </div>
       <div class={cx(styles.selectionList, open() && styles.open)}>
@@ -170,7 +172,7 @@ export function Category(){
     <div class={styles.header}>
       <p>Category</p>
       <button onClick={() => setNewForm(!newForm())}>
-        <svg class={newForm()?styles.rotated: ''} 
+        <svg class={cx(newForm() && styles.rotated)} 
           fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.75 4.5a.75.75 0 0 1 .75.75V11h5.75a.75.75 0 0 1 0 1.5H12.5v5.75a.75.75 0 0 1-1.5 0V12.5H5.25a.75.75 0 0 1 0-1.5H11V5.25a.75.75 0 0 1 .75-.75Z"></path></svg>
       </button>
     </div>

@@ -1,12 +1,12 @@
 import { createConnection, TABLES } from '~/lib/jsstore'
 import { createWithSignal } from 'solid-zustand'
 import { immer } from 'zustand/middleware/immer'
-import type { Note, NoteItem } from '../types'
+import type { Note, NoteLink } from '../types'
 
 export type SearchState = {
   text: string
   result: Note[]
-  index: { [key:string]: NoteItem }
+  index: { [key:string]: NoteLink }
   loading: boolean
   setText: ( str: string ) => void
 }
@@ -37,7 +37,7 @@ export const useSearchStore = createWithSignal<SearchState>()(
         }
       })
 
-      const index = res && res.length ? await conn.select<NoteItem>({
+      const index = res && res.length ? await conn.select<NoteLink>({
         from: TABLES.NOTES,
         where: {
           id: {
@@ -51,7 +51,7 @@ export const useSearchStore = createWithSignal<SearchState>()(
       state.index = index ? index.reduce((a,b) => {
         a[b.id] = b
         return a
-      },{} as { [key:string]: NoteItem }) : {}
+      },{} as { [key:string]: NoteLink }) : {}
       state.result = res
       state.loading = false
     })

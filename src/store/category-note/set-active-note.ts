@@ -1,11 +1,11 @@
 import type { Set } from '.'
-import type { NoteItem, Note } from '../types'
+import type { NoteLink, Note } from '../types'
 import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 import { setLastActiveNote } from './last-active'
 
 export function setActiveNote( set: Set ){
 
-  return async ( note: NoteItem ) => {
+  return async ( note: NoteLink ) => {
 
     const conn = createConnection()
     const notes = await conn.select<Note>({
