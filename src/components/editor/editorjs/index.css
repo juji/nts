@@ -1,0 +1,14 @@
+.ce-block__content{
+  max-width: 700px !important;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+.ce-toolbar__content{
+  max-width: 700px !important;
+}
+
+.codex-editor [data-placeholder-active]:empty:before, 
+.codex-editor [data-placeholder-active][data-empty=true]:before{
+  color: var(--content-placeholder-color)
+}

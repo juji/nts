@@ -35,6 +35,8 @@ import './style.css'
 // import { math } from '@milkdown/plugin-math';
 // import 'katex/dist/katex.min.css';
 
+import { defaultContent } from './default';
+
 export const Milkdown = ({ 
   className,
   onChange,
@@ -61,8 +63,11 @@ export const Milkdown = ({
           }
         })
 
-        if(initialContent)
-          ctx.set(defaultValueCtx, initialContent);
+        // if(initialContent)
+        //   ctx.set(defaultValueCtx, initialContent);
+
+        ctx.set(defaultValueCtx, defaultContent);
+        
 
         ctx.set(prismConfig.key, {
           configureRefractor: (refractor) => {

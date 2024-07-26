@@ -1,0 +1,26 @@
+
+
+.tiptapMenu{
+
+  border: 1px solid #545454;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.4rem;
+
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.2rem;
+
+    &.active{
+      background-color: #e88000;
+    }
+
+    svg{
+      fill: currentColor;
+    }
+  }
+
+}

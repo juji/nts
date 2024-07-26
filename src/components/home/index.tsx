@@ -1,6 +1,7 @@
 import styles from './style.module.css'
-import { Milkdown } from "../milkdown"
+// import { Milkdown } from "../milkdown"
 import { createSignal } from "solid-js"
+import { Editor } from '../editor/tiptap'
 
 function TitleEditable({
   initialContent,
@@ -52,10 +53,14 @@ export default function Home(){
       </p>
     </div>
     <div class={styles.editorContainer}>
-      <Milkdown 
+      <Editor
         className={styles.editor} 
         initialContent=""
       />
+      {/* <Milkdown 
+        className={styles.editor} 
+        initialContent=""
+      /> */}
     </div>
   </div>
 
