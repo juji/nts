@@ -56,10 +56,6 @@ export default function Home(){
         className={styles.editor} 
         initialContent=""
       />
-      {/* <Milkdown 
-        className={styles.editor} 
-        initialContent=""
-      /> */}
     </div>
   </div>
 
