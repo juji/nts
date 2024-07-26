@@ -48,16 +48,8 @@ export function Editor({
         }
       })
     ],
-    // content: initialContent,
-    content: `asdf asdf
-
-asdf aasdfgkja sdf klhjasdfklhj asdfkj hasdfkljh asdf ljk hasdf lhjasd flkjh asd fkljh asd fhjasd flkjhasdlk halksdh fasd fhasdlkf hasdlkfh alkjshdf lkj hasd flkh asdl khasd fkhjhl
-
-sdf 
-
-asdf 
-
-asdf `,
+    content: initialContent,
+    // content: ``,
   }));
 
   return <>

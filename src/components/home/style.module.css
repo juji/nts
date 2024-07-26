@@ -52,7 +52,7 @@
 
     .title{
       max-width: 700px;
-      margin: 3rem auto;
+      margin: 2rem auto;
       margin-bottom: 0;
       outline: none;
       position: relative;
@@ -63,6 +63,7 @@
       line-break: anywhere;
       
       @media(min-width: 900px){
+        margin-top: 5rem;
         margin-left: 5%;
         margin-right: 5%;
       }
