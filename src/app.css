@@ -7,6 +7,8 @@
   --bg-overlay: rgba(0,0,0,0.5);
   --bg-code: #101010;
 
+  --color-danger: rgb(255, 123, 123);
+
   --title-placeholder-color: #424242;
   --content-placeholder-color: #505050;
   --blockquote-color: orange;
@@ -31,6 +33,10 @@
 html{
   scroll-behavior: smooth;
   color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
 }
 
 html, body, #app{

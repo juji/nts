@@ -1,6 +1,6 @@
 import type { Set } from '.'
 import type { NoteCategory, NoteItem, Note } from '../types'
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 import { setLastActiveCategory, setLastActiveNote } from './last-active'
 
 export function setActiveCategory( set: Set ){
@@ -12,7 +12,7 @@ export function setActiveCategory( set: Set ){
       from: TABLES.CATEGORY_NOTES,
       where: {
         categoryId: category.id,
-        deleted: 'null'
+        deleted: DEFAULT_DELETED
       },
       order: {
         by: 'created',
@@ -24,7 +24,7 @@ export function setActiveCategory( set: Set ){
       from: TABLES.NOTES,
       where: {
         id: notes[0].id,
-        deleted: 'null'
+        deleted: DEFAULT_DELETED
       }
     })
      

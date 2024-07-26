@@ -1,6 +1,6 @@
 
 import type { Set } from '.'
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 import { NoteCategory } from '../types'
 import { getLastActiveCategory, setLastActiveCategory } from './last-active'
 
@@ -13,7 +13,7 @@ export function removeCategory( set: Set ){
     const count = await conn.count({
       from: TABLES.CATEGORY_NOTES,
       where: {
-        deleted: 'null',
+        deleted: DEFAULT_DELETED,
         categoryId: category.id
       },
     })

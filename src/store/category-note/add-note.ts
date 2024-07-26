@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 import type { Set } from '.'
 import type { NoteItem, Note, NoteCategory } from '../types'
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 
 export function addNote( set: Set ){
 
@@ -11,7 +11,7 @@ export function addNote( set: Set ){
       id: nanoid(),
       title: '',
       created: new Date(),
-      deleted: 'null',
+      deleted: DEFAULT_DELETED,
       categoryId: category.id
     }
 
@@ -19,7 +19,7 @@ export function addNote( set: Set ){
       id: note.id,
       title: '',
       created: note.created,
-      deleted: 'null',
+      deleted: DEFAULT_DELETED,
       content: '',
       keywords: []
     }

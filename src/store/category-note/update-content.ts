@@ -1,5 +1,5 @@
 import type { Set } from '.'
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 
 export function updateContent( set: Set ){
 
@@ -14,7 +14,7 @@ export function updateContent( set: Set ){
       },
       where: {
         id,
-        deleted: 'null'
+        deleted: DEFAULT_DELETED
       }
     })
     

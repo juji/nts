@@ -1,6 +1,6 @@
 import type { Set } from '.'
 import type { NoteCategory } from '../types'
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 
 export function updateCategory( set: Set ){
 
@@ -13,7 +13,7 @@ export function updateCategory( set: Set ){
       set: category,
       where: { 
         id: category.id,
-        deleted: 'null' 
+        deleted: DEFAULT_DELETED 
       }
     })
     conn.terminate();

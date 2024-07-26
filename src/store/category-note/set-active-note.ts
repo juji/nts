@@ -1,6 +1,6 @@
 import type { Set } from '.'
 import type { NoteItem, Note } from '../types'
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 import { setLastActiveNote } from './last-active'
 
 export function setActiveNote( set: Set ){
@@ -12,7 +12,7 @@ export function setActiveNote( set: Set ){
       from: TABLES.NOTES,
       where: {
         id: note.id,
-        deleted: 'null'
+        deleted: DEFAULT_DELETED
       }
     })
     conn.terminate();

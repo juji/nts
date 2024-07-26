@@ -1,4 +1,4 @@
-import { createConnection, TABLES } from '~/lib/jsstore'
+import { createConnection, TABLES, DEFAULT_DELETED } from '~/lib/jsstore'
 import type { NoteCategory, NoteItem, Note } from '../types'
 import { StateCreator } from 'zustand'
 import { getLastActiveCategory, getLastActiveNote } from './last-active'
@@ -17,7 +17,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
   conn.select<NoteCategory>({
     from: TABLES.CATEGORY,
     where: {
-      deleted: 'null'
+      deleted: DEFAULT_DELETED
     },
     order: {
       by: 'created',
@@ -37,7 +37,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         from: TABLES.CATEGORY_NOTES,
         where: {
           categoryId: categories[activeCatIndex].id,
-          deleted: 'null'
+          deleted: DEFAULT_DELETED
         },
         order: {
           by: 'created',
@@ -69,7 +69,7 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
           from: TABLES.NOTES,
           where: {
             id: activeNote.id,
-            deleted: 'null'
+            deleted: DEFAULT_DELETED
           }
         })
         if(!n || !n.length){

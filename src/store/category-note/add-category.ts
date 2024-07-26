@@ -22,6 +22,7 @@ export function addCategory( set: Set ){
   
     set(state => {
       state.categories.push(data)
+      state.activeCategory = data
       state.notes = []
     })
 

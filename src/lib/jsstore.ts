@@ -1,11 +1,13 @@
 import workerInjector from "jsstore/dist/worker_injector";
-import { Connection, DATA_TYPE, type IDataBase, type ITable } from 'jsstore'
+import { Connection, DATA_TYPE, type IDataBase, type ITable } from '@juji/jsstore'
 
 export const TABLES = {
   CATEGORY: 'category',
   CATEGORY_NOTES: 'category_notes',
   NOTES: 'notes'
 }
+
+export const DEFAULT_DELETED = new Date('1970-01-01T00:00:00.000Z')
 
 export function createConnection(){
   const connection = new Connection();
@@ -24,7 +26,7 @@ function getDatabase(){
       name: { notNull: true, dataType: DATA_TYPE.String },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },
       updated: { dataType: DATA_TYPE.DateTime },
-      deleted: { dataType: DATA_TYPE.DateTime },
+      deleted: { dataType: DATA_TYPE.DateTime, default: DEFAULT_DELETED },
     }
   }
   
@@ -38,7 +40,7 @@ function getDatabase(){
       notes: { dataType: DATA_TYPE.Array },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },
       updated: { dataType: DATA_TYPE.DateTime },
-      deleted: { dataType: DATA_TYPE.DateTime },
+      deleted: { dataType: DATA_TYPE.DateTime, default: DEFAULT_DELETED },
     }
   }
   
@@ -51,7 +53,7 @@ function getDatabase(){
       keywords: { dataType: DATA_TYPE.Array, multiEntry: true, enableSearch: true },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },
       updated: { dataType: DATA_TYPE.DateTime },
-      deleted: { dataType: DATA_TYPE.DateTime },
+      deleted: { dataType: DATA_TYPE.DateTime, default: DEFAULT_DELETED },
     }
   }
   

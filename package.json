@@ -11,6 +11,7 @@
     "@editorjs/editorjs": "^2.30.2",
     "@editorjs/header": "^2.8.7",
     "@editorjs/list": "^1.10.0",
+    "@juji/jsstore": "^4.8.4",
     "@juji/preflight": "^1.0.1",
     "@milkdown/core": "^7.4.0",
     "@milkdown/ctx": "^7.4.0",
