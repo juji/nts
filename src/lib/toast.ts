@@ -1,4 +1,5 @@
 import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 export function showError(str: string){
 
@@ -9,10 +10,7 @@ export function showError(str: string){
     gravity: "bottom", // `top` or `bottom`
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
-    style: {
-      background: "var(--toast-error-bg)",
-      color: "var(--toast-error-fg)"
-    },
+    className: 'toast-error',
     onClick: function(){} // Callback after click
   }).showToast();
 

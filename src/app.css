@@ -95,3 +95,15 @@ input, textarea{
     color: var(--input-placeholder-color);
   }
 }
+
+div.toast-error{
+  /*
+  * Created with https://www.css-gradient.com
+  * Gradient link: https://www.css-gradient.com/?c1=ff0165&c2=ff8a8a&gt=r&gd=dtl
+  */
+  background: #FF0165;
+  background: radial-gradient(at left top, #FF0165, #ff6363);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  border-radius: 0.2rem;
+
+}

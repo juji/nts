@@ -14,6 +14,7 @@ export type Note = {
 export type NoteLink = {
   id: string
   categoryId: string
+  index?: number
   title: string
   notes?: NoteLink[]
   created: Date

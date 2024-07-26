@@ -36,12 +36,19 @@ export function removeCategory( set: Set ){
     if(getLastActiveCategory() === category.id){
       setLastActiveCategory(null)
     }
-  
+
+    
+    
     set(state => {
+
+      state.categories = state.categories.filter(v => v.id !== category.id)
+
+      // when removing active category
+      // set active category to null, 
+      // to prevent the selector from collapsing
       if(state.activeCategory && state.activeCategory.id === category.id){
         state.activeCategory = null
       }
-      state.categories = state.categories.filter(v => v.id !== category.id)
     })
 
   }

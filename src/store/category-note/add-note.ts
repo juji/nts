@@ -7,12 +7,29 @@ export function addNote( set: Set ){
 
   return async ( category: NoteCategory ) => {
 
+    const conn = createConnection()
+
+    // get max note index
+    const maxIndex = await conn.select<NoteLink>({
+      from: TABLES.CATEGORY_NOTES,
+      where: {
+        deleted: DEFAULT_DELETED,
+        categoryId: category.id
+      },
+      order: {
+        by: 'index',
+        type: 'desc'  
+      },
+      limit: 1
+    })
+
     const note: NoteLink = {
       id: nanoid(),
       title: '',
       created: new Date(),
       deleted: DEFAULT_DELETED,
-      categoryId: category.id
+      categoryId: category.id,
+      index: maxIndex[0].index ? maxIndex[0].index + 1 : 1
     }
 
     const noteContent: Note = {
@@ -23,8 +40,6 @@ export function addNote( set: Set ){
       content: '',
       keywords: []
     }
-
-    const conn = createConnection()
     
     await Promise.all([
       conn.insert({

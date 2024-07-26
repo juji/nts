@@ -43,6 +43,12 @@ export default function Home(){
 
   return <div class={styles.container}>
 
+    <div class={styles.editorEmpty}>
+      <iframe 
+        src="https://my.spline.design/pencilnobackground-6365a60021924d4962df3f0166622d6c/" 
+      ></iframe> 
+    </div>
+
     <div class={styles.headingContainer}>
       <TitleEditable initialContent={""} />
       <p>

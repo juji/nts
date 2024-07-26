@@ -22,6 +22,9 @@ export function updateCategory( set: Set ){
       const i = state.categories.findIndex((v: NoteCategory) => v.id === category.id)
       if(i<0) return; 
       state.categories[i] = category
+      if(state.activeCategory && state.activeCategory.id === category.id){
+        state.activeCategory = category
+      }
     })
 
   }

@@ -8,6 +8,8 @@ export type IDbStorageType = <T>(f: StateCreator<T, [], any[]>) => StateCreator<
 export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
   type T = ReturnType<typeof f>
 
+  // console.log('Initializing store')
+
   // initialize
   // get all category
   // get last active category
@@ -42,8 +44,8 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
           deleted: DEFAULT_DELETED
         },
         order: {
-          by: 'created',
-          type: 'desc'
+          by: 'index',
+          type: 'desc'  
         }
       })
       
@@ -85,6 +87,15 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         }else{
           note = n[0]
         }
+      }else{
+        const n = await conn.select<Note>({
+          from: TABLES.NOTES,
+          where: {
+            id: notes[0].id,
+            deleted: DEFAULT_DELETED
+          }
+        })
+        note = n[0]
       }
       
       conn.terminate();

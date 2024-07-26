@@ -34,8 +34,8 @@ function getDatabase(){
     name: TABLES.CATEGORY_NOTES,
     columns: {
       id: { primaryKey: true, notNull: true, dataType: DATA_TYPE.String },
-      categoryId: { notNull: true, dataType: DATA_TYPE.String, enableSearch: true },
-      index: { notNull: true, dataType: DATA_TYPE.Number },
+      categoryId: { notNull: true, dataType: DATA_TYPE.String },
+      index: { notNull: true, dataType: DATA_TYPE.Number, default: 0 },
       title: { notNull: true, dataType: DATA_TYPE.String },
       notes: { dataType: DATA_TYPE.Array },
       created: { notNull: true, dataType: DATA_TYPE.DateTime },

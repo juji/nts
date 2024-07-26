@@ -5,12 +5,42 @@
   display: grid;
   grid-template-rows: auto 1fr;
   letter-spacing: var(--letter-spacing);
+  position: relative;
+  height: calc(100vh - 62px);
+  @media(min-width: 900px){
+    height: 100vh;
+  }
 
   & > div{
     padding: 0 2rem;
 
     @media(min-width: 500px){
       padding: 0 4rem;
+    }
+  }
+
+  .editorEmpty{
+    position: absolute;
+    top: 0;
+    left:0;
+    padding: 0 !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+    z-index: 100;
+    cursor: grab;
+
+    &:active{
+      cursor: grabbing;
+    }
+    
+    iframe{
+      width: 100%;
+      height: 100%;
+
     }
   }
   
@@ -98,6 +128,7 @@
   }
 
   .editorContainer{
+
     .editor{
       height: 100%;
       max-width: 700px;
