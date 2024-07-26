@@ -26,7 +26,12 @@ function NewForm({ onDone }:{ onDone: () => void }){
     const target = e.target as HTMLInputElement
     const lc = target.value.toLowerCase()
     const c = categories().find(v => v.name.toLowerCase() === lc)
-    if(c) target.setCustomValidity('Category exists')
+    if(c) {
+      target.setCustomValidity('Category exists')
+      target.reportValidity()
+    }else{
+      target.setCustomValidity('')
+    }
   }
 
   return <form onSubmit={onSubmit}>
@@ -81,7 +86,12 @@ function Selection(){
     const target = e.target as HTMLInputElement
     const lc = target.value.toLowerCase()
     const c = categories().find(v => v.name.toLowerCase() === lc)
-    if(c) target.setCustomValidity('Category exists')
+    if(c) {
+      target.setCustomValidity('Category exists')
+      target.reportValidity()
+    }else{
+      target.setCustomValidity('')
+    }
   }
 
   createEffect(() => {

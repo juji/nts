@@ -21,6 +21,9 @@
   --new-category-border-focus: #666;
   --category-sel-background: #1d1d1d;
 
+  --input-bg: #000;
+  --input-placeholder-color: #4e4e4e;
+
   --font-family: system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --font-size: 1.3rem;
   --letter-spacing: 0.02rem;
@@ -82,5 +85,13 @@ body{
     scroll-behavior: auto !important;
     transition-duration: 0s !important;
     transition-delay: 0s !important;
+  }
+}
+
+input, textarea{
+  background: var(--input-bg);
+
+  &::placeholder{
+    color: var(--input-placeholder-color);
   }
 }
