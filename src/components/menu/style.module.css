@@ -61,6 +61,7 @@
 
         display: grid;
         grid-template-rows: 0fr;
+
         transition: 
           grid-template-rows 300ms 100ms ease-out,
           padding 300ms 100ms ease-out,
@@ -71,13 +72,68 @@
         &.open{
           grid-template-rows: 1fr;
           padding: 1rem var(--sidebar-padding);
-          border-top: 1px solid #3f3f3f;
-          border-bottom: 1px solid #3f3f3f;
+          border-top: 1px solid var(--color-border);
+          border-bottom: 1px solid var(--color-border);
         }
 
         & > div{
           overflow: hidden;
           height: 100%;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .itemEdit{
+          display: grid;
+          grid-template-columns: 1fr auto auto;
+          align-items: flex-start;
+
+          border: 1px solid var(--color-border);
+          border-radius: 0.3rem;
+
+          &.active{
+            border: 1px solid var(--color-primary);
+          }
+
+          input{
+            padding: 0.5rem 1rem;
+            text-align: left;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            border: none;
+            outline: none;
+            min-width: 0;
+          }
+
+          button{
+            padding: 0.5rem 1rem;
+            &:active{
+              opacity: 0.7;
+            }
+          }
+
+          button:nth-child(2){
+            border-left: 1px solid var(--color-border);
+            svg{
+              width: 20px;
+              height: 20px;
+            }
+            &:hover{
+              color: var(--color-primary);
+            }
+          }
+
+          button:nth-child(3){
+            border-left: 1px solid var(--color-border);
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            &:hover{
+              color: var(--color-danger);
+            }
+          }
+
+
         }
 
         .selectionItem{
@@ -85,8 +141,15 @@
           grid-template-columns: 1fr auto auto;
           align-items: flex-start;
 
+          border: 1px solid var(--color-border);
+          border-radius: 0.3rem;
+
+          &.active{
+            border: 1px solid var(--color-primary);
+          }
+
           button{
-            padding: 0.5rem 0.4rem;
+            padding: 0.5rem 1rem;
             &:active{
               opacity: 0.7;
             }
@@ -94,12 +157,15 @@
 
           button:first-child{
             text-align: left;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
             &:hover{
               color: var(--color-primary);
             }
           }
 
           button:nth-child(2){
+            border-left: 1px solid var(--color-border);
             svg{
               width: 20px;
               height: 20px;
@@ -110,6 +176,9 @@
           }
 
           button:nth-child(3){
+            border-left: 1px solid var(--color-border);
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
             &:hover{
               color: var(--color-danger);
             }

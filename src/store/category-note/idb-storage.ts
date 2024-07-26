@@ -30,10 +30,9 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
       const lastActiveCat = getLastActiveCategory()
       const lastActiveNote = getLastActiveNote()
 
-      let activeCatIndex = lastActiveCat ? categories.findIndex(v => v.id === lastActiveCat) : 0
-      activeCatIndex = activeCatIndex < 0 ? 0 : activeCatIndex
+      let activeCatIndex = lastActiveCat ? categories.findIndex(v => v.id === lastActiveCat) : -1
 
-      const notes = await conn.select<NoteItem>({
+      const notes = activeCatIndex < 0 ? [] : await conn.select<NoteItem>({
         from: TABLES.CATEGORY_NOTES,
         where: {
           categoryId: categories[activeCatIndex].id,
@@ -86,7 +85,8 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         hydrated: true,
         categories,
         notes,
-        activeNote: note
+        activeNote: note,
+        activeCategory: activeCatIndex < 0 ? null : categories[activeCatIndex]
       } as unknown as Partial<T>)
 
     }else{
