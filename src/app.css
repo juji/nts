@@ -107,3 +107,7 @@ div.toast-error{
   border-radius: 0.2rem;
 
 }
+
+.dev-overlay{
+  z-index: 1000 !important;
+}

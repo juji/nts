@@ -44,6 +44,24 @@ export default function Home(){
   return <div class={styles.container}>
 
     <div class={styles.editorEmpty}>
+      <div><pre>
+        Nts. Is your:<br />
+        - Personal Rants<br />
+        - Diary<br />
+        - Grocery list<br />
+        - College notes<br />
+        - or, Whatever.<br />
+        <br />
+        It's a colection of notes.<br />
+        Your personal notes.<br /><br />
+        <div class={styles.startHere}>
+          <button onClick={() => {
+            (
+              document.getElementById('mobilemenubutton') as HTMLButtonElement
+            )?.click()
+          }}>Start Here</button>
+        </div>
+      </pre></div>
       <iframe 
         src="https://my.spline.design/pencilnobackground-6365a60021924d4962df3f0166622d6c/" 
       ></iframe> 

@@ -10,25 +10,25 @@ export default function Layout( props: ParentProps ){
   const [open, setOpen] = createSignal(false)
   const categories = useCategoryNoteStore(state => state.categories)
 
-  createEffect(() => {
+  // createEffect(() => {
     
-    if(
-      categories().length && 
-      localStorage.getItem('createcategoryinit')
-    ){
-      setOpen(false)
-      localStorage.removeItem('createcategoryinit')
-    }
+  //   if(
+  //     categories().length && 
+  //     localStorage.getItem('createcategoryinit')
+  //   ){
+  //     setOpen(false)
+  //     localStorage.removeItem('createcategoryinit')
+  //   }
     
-    else{
-      setTimeout(() => {
-        if(categories().length) return;
-        localStorage.setItem('createcategoryinit', '1')
-        setOpen(true)
-      },500)
-    }
-    
-  })
+  //   else{
+  //     setTimeout(() => {
+  //       if(categories().length) return;
+  //       localStorage.setItem('createcategoryinit', '1')
+  //       setOpen(true)
+  //     },500)
+  //   }
+
+  // })
 
   return <div class={styles.container}>
       <div class={cx(
@@ -46,7 +46,7 @@ export default function Layout( props: ParentProps ){
       <main>
         <header>
           <div>
-            <button onClick={() => setOpen(!open())}>
+            <button id="mobilemenubutton" onClick={() => setOpen(!open())}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
               </svg>
