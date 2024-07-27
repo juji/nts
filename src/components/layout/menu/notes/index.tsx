@@ -67,7 +67,7 @@ export function Notes(){
 
   return <Switch fallback={(
       <div class={styles.empty}>
-        <p>Notes empty</p>
+        <p>Notes are empty..</p>
         {/* @ts-expect-error */}
         <button onClick={() => addNote(activeCategory())}>Create One</button>
       </div>
