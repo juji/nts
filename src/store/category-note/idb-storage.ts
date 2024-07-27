@@ -82,12 +82,15 @@ export const IDbStorage: IDbStorageType = (f) => (set, get, store) => {
         if(!n || !n.length){
           // this is not a fatal error
           // just output to console
-          console.error(`note not found: ${activeNote.id}`)
+          console.error(`note not found`)
           console.error(activeNote)
         }else{
           note = n[0]
         }
-      }else{
+      }
+      
+      // select the first note from the list
+      else if(notes.length){
         const n = await conn.select<Note>({
           from: TABLES.NOTES,
           where: {

@@ -17,7 +17,7 @@ export function Notes(){
   })
 
   return activeCategory() ? <>
-
+    
   </> : null
 
 }
