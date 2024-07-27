@@ -50,7 +50,7 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "dev-serve": "static-server .output/public"
+    "serve:dev": "static-server .output/public"
   },
   "type": "module",
   "devDependencies": {
