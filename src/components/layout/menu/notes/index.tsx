@@ -5,23 +5,24 @@ import { NoteLink } from "~/store/types";
 import { createSignal } from "solid-js";
 import { Switch, Match, For } from "solid-js"
 
-function NoteLinkContainer({ noteLink }:{ noteLink: NoteLink }){
+function NoteLinkContainer(props :{ noteLink: NoteLink }){
 
   const activeNote = useCategoryNoteStore(state => state.activeNote)
   const setActiveNote = useCategoryNoteStore(state => state.setActiveNote)
   const removeNote = useCategoryNoteStore(state => state.removeNote)
   const [ remove, setRemove ] = createSignal(false)
+  const noteLink = () => props.noteLink
 
   return <div class={cx(styles.note)}>
     <button 
-      onClick={() => removeNote(noteLink)}
+      onClick={() => removeNote(noteLink())}
       class={cx(styles.removeButton, remove() && styles.shown)}>
       Confirm Removal
     </button>
     <button 
-      class={cx(styles.title, activeNote()?.id === noteLink.id && styles.active)} 
-      onClick={() => setActiveNote(noteLink)}>
-      {noteLink.title||'Untitled'}
+      class={cx(styles.title, activeNote()?.id === noteLink().id && styles.active)} 
+      onClick={() => setActiveNote(noteLink())}>
+      {noteLink().title||'Untitled'}
     </button>
     <div>
       <button class={styles.remove} onClick={() => setRemove(true)}>
