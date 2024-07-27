@@ -1,5 +1,5 @@
-# NTs
+# NTs.
 
-NTs is a Note Taking App
+NTs. is a Note Taking App
 
 -- not done 
