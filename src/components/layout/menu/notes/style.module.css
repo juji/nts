@@ -30,11 +30,13 @@
       position: relative;
 
       &:hover{
-        grid-template-columns: 1fr 75px;
+        /* grid-template-columns: 1fr 75px; */
+        grid-template-columns: 1fr 25px;
       }
 
       @media (hover: none) {
-        grid-template-columns: 1fr 75px;
+        /* grid-template-columns: 1fr 75px; */
+        grid-template-columns: 1fr 25px;
       }
 
       & > button.removeButton{
@@ -119,7 +121,8 @@
 
         overflow: hidden;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: 1fr;
         gap: 5px;
 
         & > button {
