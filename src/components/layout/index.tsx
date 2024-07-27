@@ -2,33 +2,11 @@ import { createEffect, createSignal, ParentProps } from "solid-js";
 import { A } from "@solidjs/router";
 import styles from './style.module.css'
 import { cx } from "classix";
-import Menu from '~/components/menu'
-import { useCategoryNoteStore } from "~/store/category-note";
+import Menu from './menu'
 
 export default function Layout( props: ParentProps ){
 
   const [open, setOpen] = createSignal(false)
-  const categories = useCategoryNoteStore(state => state.categories)
-
-  // createEffect(() => {
-    
-  //   if(
-  //     categories().length && 
-  //     localStorage.getItem('createcategoryinit')
-  //   ){
-  //     setOpen(false)
-  //     localStorage.removeItem('createcategoryinit')
-  //   }
-    
-  //   else{
-  //     setTimeout(() => {
-  //       if(categories().length) return;
-  //       localStorage.setItem('createcategoryinit', '1')
-  //       setOpen(true)
-  //     },500)
-  //   }
-
-  // })
 
   return <div class={styles.container}>
       <div class={cx(

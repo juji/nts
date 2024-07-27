@@ -69,10 +69,10 @@
         display: grid;
         
         transition: 
-          grid-template-rows 300ms 0ms ease-in-out,
-          padding 300ms 0ms ease-in-out,
-          border-top 300ms 400ms ease-in-out,
-          border-bottom 300ms 400ms ease-in-out
+          grid-template-rows 200ms 0ms ease-in-out,
+          padding 200ms 0ms ease-in-out,
+          border-top 100ms 200ms ease-in-out,
+          border-bottom 100ms 200ms ease-in-out
         ;
 
         padding: 0rem var(--sidebar-padding);
@@ -83,10 +83,10 @@
         &.open{
 
           transition: 
-            grid-template-rows 300ms 300ms ease-out,
-            padding 300ms 300ms ease-out,
-            border-top 300ms 0ms ease-out,
-            border-bottom 300ms 0ms ease-out
+            grid-template-rows 200ms 50ms ease-out,
+            padding 200ms 50ms ease-out,
+            border-top 50ms 0ms ease-out,
+            border-bottom 50ms 0ms ease-out
           ;
 
           grid-template-rows: 1fr;
@@ -227,6 +227,14 @@
       p{
         font-size: large;
         font-weight: bold;
+      }
+
+      button:hover{
+        color: var(--color-primary);
+      }
+
+      button:active{
+        color: rgb(from var(--color-primary) r g b / 0.5);
       }
 
       svg{

@@ -30,7 +30,7 @@ export type NoteCategoryState = {
   updateTitle: ( id: string, title: string ) => Promise<void>
   updateContent: ( id: string, content: string ) => Promise<void>
   addNote: ( category: NoteCategory ) => Promise<void>
-  removeNote: ( note: NoteCategory ) => Promise<void>
+  removeNote: ( note: NoteLink ) => Promise<void>
 }
 
 export type Set = (

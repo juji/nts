@@ -29,7 +29,7 @@ export function addNote( set: Set ){
       created: new Date(),
       deleted: DEFAULT_DELETED,
       categoryId: category.id,
-      index: maxIndex[0].index ? maxIndex[0].index + 1 : 1
+      index: maxIndex.length ? (maxIndex[0].index ? maxIndex[0].index + 1 : 1) : 0
     }
 
     const noteContent: Note = {

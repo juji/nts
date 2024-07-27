@@ -1,13 +1,13 @@
 
 import type { Set } from '.'
 import { createConnection, TABLES } from '~/lib/jsstore'
-import { NoteCategory } from '../types'
+import { NoteLink } from '../types'
 import { getLastActiveNote, setLastActiveNote } from './last-active'
 
 
 export function removeNote( set: Set ){
 
-  return async (note: NoteCategory) => {
+  return async (note: NoteLink) => {
   
     const conn = createConnection()
 

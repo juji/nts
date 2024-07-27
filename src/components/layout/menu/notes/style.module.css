@@ -1,0 +1,176 @@
+
+
+.container{
+  .header{
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    font-weight: bold;
+    margin: 1rem 0;
+
+    button:hover{
+      color: var(--color-primary);
+    }
+
+    button:active{
+      color: rgb( from var(--color-primary) r g b / 0.8);
+    }
+  }
+
+  .noteContainer{
+    padding: 0.5rem 0;
+    /* outline: 1px solid yellow; */
+
+    .note{
+
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 0px;
+      transition: grid-template-columns 100ms ease-out;
+      position: relative;
+
+      &:hover{
+        grid-template-columns: 1fr 75px;
+      }
+
+      & > button.removeButton{
+        position: absolute;
+        top: 0;
+        right: 100%;
+        height: 100%;
+        width: calc(100% - 87px);
+        transition: right 100ms ease-out;
+        color: var(--color-danger);
+        background-color: var(--bg-color);
+        border: 1px solid var(--color-danger);
+        line-height: 100%;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+
+        &:hover{
+          background-color: var(--color-danger);
+          color: var(--bg-color);
+        }
+
+        &.shown{
+          right: 87px;
+        }
+      }
+
+      & > button.cancelRemoveButton{
+        position: absolute;
+        top: 0;
+        left: 100%;
+        height: 100%;
+        width: 89px;
+        line-height: 100%;
+        transition: left 200ms ease-out;
+        color: var(--color-danger);
+        background-color: var(--bg-color);
+        border: 1px solid var(--color-danger);
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        
+        &:hover{
+          background-color: var(--color-danger);
+          color: var(--bg-color);
+        }
+
+        &.shown{
+          left: calc(100% - 89px);
+        }
+      }
+
+      & > button.title{
+        text-align: left;
+        display: block;
+        
+        
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        color: transparent;
+        background-image: linear-gradient(
+          to right, 
+          rgb(from var(--fg-color) r g b / 1) 0%,
+          rgb(from var(--fg-color) r g b / 1) 70%, 
+          rgb(from var(--fg-color) r g b / 0) 98%,
+          rgb(from var(--fg-color) r g b / 0)
+        );
+        background-size: 100%;
+        background-clip: text;
+
+        &.active{
+          background-image: linear-gradient(
+          to right, 
+          rgb(from var(--color-primary) r g b / 1) 0%,
+          rgb(from var(--color-primary) r g b / 1) 70%, 
+          rgb(from var(--color-primary) r g b / 0) 98%,
+          rgb(from var(--color-primary) r g b / 0)
+        );
+        }
+      }
+
+      & > div {
+
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+
+        & > button {
+          &.remove{
+            &:hover{
+              color: var(--color-danger);
+            }
+            &:active{
+              opacity: 0.7;
+            }
+          }
+  
+          &.moveCategory,
+          &.sort{
+            &:hover{
+              color: var(--color-secondary);
+            }
+            &:active{
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+.empty{
+
+  margin: 1rem 0;
+
+  p{
+    color: var(--color-muted);
+  }
+
+  button{
+    border-radius: 0.4rem;
+    padding: 1rem 0rem;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    border: 1px solid rgb( from var(--color-primary) r g b / 0.5);
+    background-color: rgb( from var(--color-primary) r g b / 0.1);
+
+    &:hover{
+      border: 1px solid rgb( from var(--color-primary) r g b / 0.8);
+      background-color: rgb( from var(--color-primary) r g b / 0.4);
+    }
+
+    &:active{
+      background-color: rgb( from var(--color-primary) r g b / 0.3);
+    }
+  }
+
+}

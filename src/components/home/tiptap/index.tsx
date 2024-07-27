@@ -3,11 +3,12 @@ import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder'
 import BubbleMenu from '@tiptap/extension-bubble-menu'
 import Underline from '@tiptap/extension-underline';
+import { createSignal } from 'solid-js';
 import { cx } from "classix";
 
 import './style.css'
 import styles from './style.module.css'
-import { createSignal } from 'solid-js';
+
 
 export function Editor({ 
   className,
@@ -29,6 +30,12 @@ export function Editor({
 
   const editor = createTiptapEditor(() => ({
     element: ref!,
+    onUpdate({ editor }) {
+      // The content has changed.
+      if(!onChange) return;
+      const content = editor.getHTML()
+      onChange(content)
+    },
     extensions: [
       StarterKit.configure({
         heading: {
@@ -49,11 +56,12 @@ export function Editor({
       })
     ],
     content: initialContent,
-    // content: ``,
   }));
 
   return <>
+    
     <div id="editor" class={className} ref={ref} />
+
     {/* force re-render with data-changed */}
     <div class={styles.tiptapMenu} ref={menu} data-changed={changed()}> 
       <button

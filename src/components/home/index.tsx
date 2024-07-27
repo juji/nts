@@ -1,38 +1,38 @@
 import styles from './style.module.css'
-import { createSignal } from "solid-js"
-import { Editor } from '../editor/tiptap'
+import { Editor } from './tiptap'
+import { PencilWaitingNote } from './pencil';
+import { TitleEditable } from './title-editable';
+import { Intro } from './intro';
+import { createMemo } from "solid-js"
+import { useCategoryNoteStore } from "~/store/category-note"
 
-function TitleEditable({
-  initialContent,
-  onChange
-}:{
-  initialContent: string
-  onChange?: (str: string) => void
-}){
+function EditorComponent(){
 
-  const [ content, setContent ] = createSignal(initialContent)
+  const activeNote = useCategoryNoteStore(state => state.activeNote)
+  const updateTitle = useCategoryNoteStore(state => state.updateTitle)
+  const updateContent = useCategoryNoteStore(state => state.updateContent)
 
-  // manage spaces by adding character on empty
-  const splitContent = () => content() ? content().split('\n') : ['s']
-
-  function onChangeLocal(e: InputEvent){
-    const target = e.target as HTMLTextAreaElement
-    setContent(target.value)
-    onChange && onChange(target.value) 
-  }
-
-  // https://codepen.io/shshaw/pen/bGNJJBE
-  // https://css-tricks.com/auto-growing-inputs-textareas/
-  return <div class={styles.title}>
-    {splitContent().map((v,i,a) => {
-      return <>
-        {v}{i === a.length-1 ? '' : <br />}
-      </>
-    })}
-    <textarea 
-      placeholder="Title"
-      value={content()}
-      onInput={onChangeLocal}></textarea>
+  return <div class={styles.editorComponent}>
+    <div class={styles.headingContainer}>
+      <TitleEditable 
+        initialContent={activeNote()?.title || ''} 
+        onChange={(str: string) => updateTitle(activeNote()?.id || '', str)}
+      />
+      <p>
+        <span>{activeNote()?.created.toLocaleString()}</span>
+        { activeNote()?.updated ? <>
+          <span>&nbsp;&nbsp;︱&nbsp;&nbsp;</span>
+          <span>Updated: {new Date().toLocaleString()}</span>
+        </> : null}
+      </p>
+    </div>
+    <div class={styles.editorContainer}>
+      <Editor
+        className={styles.editor} 
+        initialContent={activeNote()?.content}
+        onChange={(html: string) => updateContent(activeNote()?.id || '', html)}
+      />
+    </div>
   </div>
 
 }
@@ -41,48 +41,16 @@ function TitleEditable({
 
 export default function Home(){
 
+  const activeNote = useCategoryNoteStore(state => state.activeNote)
+  const id = createMemo(() => activeNote()?.id)
+  const editorComponent = createMemo(() => {
+    return id() ? <EditorComponent /> : null
+  })
+
   return <div class={styles.container}>
-
-    <div class={styles.editorEmpty}>
-      <div><pre>
-        Nts. <small>[read: notes]</small> Is your:<br />
-        - Personal Rants<br />
-        - Diary<br />
-        - Grocery Lists<br />
-        - School Notes<br />
-        - or, Whatever.<br />
-        <br />
-        It's a colection of notes.<br />
-        Your personal notes.<br /><br />
-        <div class={styles.startHere}>
-          <button onClick={() => {
-            (
-              document.getElementById('mobilemenubutton') as HTMLButtonElement
-            )?.click()
-          }}>Start Here</button>
-        </div>
-      </pre></div>
-      <iframe 
-        src="https://my.spline.design/pencilnobackground-6365a60021924d4962df3f0166622d6c/" 
-      ></iframe> 
-      <a class={styles.splineDesignLink} href="https://spline.design/?utm_source=public-url&utm_campaign=spline-logo"
-        target="_blank" rel="noopener noreferrer"></a>
-    </div>
-
-    <div class={styles.headingContainer}>
-      <TitleEditable initialContent={""} />
-      <p>
-        <span>{new Date().toLocaleString()}</span>
-        <span>&nbsp;&nbsp;︱&nbsp;&nbsp;</span>
-        <span>Updated: {new Date().toLocaleString()}</span>
-      </p>
-    </div>
-    <div class={styles.editorContainer}>
-      <Editor
-        className={styles.editor} 
-        initialContent=""
-      />
-    </div>
+    <Intro />
+    {editorComponent()}
+    <PencilWaitingNote />
   </div>
 
 }
