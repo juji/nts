@@ -22,6 +22,7 @@ export type NoteCategoryState = {
   activeCategory: NoteCategory | null
   categories: NoteCategory[]
   notes: NoteLink[]
+  categorySelectionMode: 'normal' | 'parent'
   addCategory: ( categoryTitle: string ) => Promise<void>
   updateCategory: ( category: NoteCategory ) => Promise<void>
   removeCategory: (category: NoteCategory) => Promise<void>
@@ -46,6 +47,7 @@ export const useCategoryNoteStore = createWithSignal<NoteCategoryState>()(
       notes: [],
       activeCategory: null,
       activeNote: null,
+      categorySelectionMode: 'normal',
       addCategory: addCategory(set),
       updateCategory: updateCategory(set),
       setActiveCategory: setActiveCategory(set),

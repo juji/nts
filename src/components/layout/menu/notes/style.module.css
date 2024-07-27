@@ -33,6 +33,10 @@
         grid-template-columns: 1fr 75px;
       }
 
+      @media (hover: none) {
+        grid-template-columns: 1fr 75px;
+      }
+
       & > button.removeButton{
         position: absolute;
         top: 0;

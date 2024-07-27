@@ -22,7 +22,7 @@ function EditorComponent(){
         <span>{activeNote()?.created.toLocaleString()}</span>
         { activeNote()?.updated ? <>
           <span>&nbsp;&nbsp;︱&nbsp;&nbsp;</span>
-          <span>Updated: {new Date().toLocaleString()}</span>
+          <span>Updated: {activeNote()?.updated?.toLocaleString()}</span>
         </> : null}
       </p>
     </div>

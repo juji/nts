@@ -32,6 +32,7 @@ export function Editor({
     element: ref!,
     onUpdate({ editor }) {
       // The content has changed.
+      console.log('changed')
       if(!onChange) return;
       const content = editor.getHTML()
       onChange(content)

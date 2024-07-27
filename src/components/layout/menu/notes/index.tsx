@@ -2,7 +2,7 @@ import { useCategoryNoteStore } from "~/store/category-note";
 import styles from './style.module.css'
 import cx from "classix";
 import { NoteLink } from "~/store/types";
-import { createMemo, createSignal } from "solid-js";
+import { createSignal } from "solid-js";
 import { Switch, Match, For } from "solid-js"
 
 function NoteLinkContainer({ noteLink }:{ noteLink: NoteLink }){
