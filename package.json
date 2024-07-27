@@ -49,7 +49,11 @@
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "start": "vinxi start",
+    "dev-serve": "static-server .output/public"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "static-server": "^2.2.1"
+  }
 }
