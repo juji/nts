@@ -31,11 +31,6 @@
     justify-content: center;
     background-color: #222;
     z-index: 100;
-    cursor: grab;
-
-    &:active{
-      cursor: grabbing;
-    }
 
     .splineDesignLink{
       position: absolute;
