@@ -45,11 +45,11 @@ export default function Home(){
 
     <div class={styles.editorEmpty}>
       <div><pre>
-        Nts. Is your:<br />
+        Nts. <small>[read: notes]</small> Is your:<br />
         - Personal Rants<br />
         - Diary<br />
-        - Grocery list<br />
-        - College notes<br />
+        - Grocery Lists<br />
+        - School Notes<br />
         - or, Whatever.<br />
         <br />
         It's a colection of notes.<br />
