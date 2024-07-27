@@ -65,6 +65,8 @@ export default function Home(){
       <iframe 
         src="https://my.spline.design/pencilnobackground-6365a60021924d4962df3f0166622d6c/" 
       ></iframe> 
+      <a class={styles.splineDesignLink} href="https://spline.design/?utm_source=public-url&utm_campaign=spline-logo"
+        target="_blank" rel="noopener noreferrer"></a>
     </div>
 
     <div class={styles.headingContainer}>

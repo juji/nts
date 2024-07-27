@@ -37,6 +37,15 @@
       cursor: grabbing;
     }
 
+    .splineDesignLink{
+      position: absolute;
+      z-index: 2;
+      width: 142px;
+      height: 38px;
+      bottom: 19px;
+      right: 20px;
+    }
+
     iframe{
       position: absolute;
       bottom: 0;
