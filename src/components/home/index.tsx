@@ -12,7 +12,7 @@ function EditorComponent(){
   const updateTitle = useCategoryNoteStore(state => state.updateTitle)
   const updateContent = useCategoryNoteStore(state => state.updateContent)
 
-  return <div class={styles.editorComponent}>
+  return <>
     <div class={styles.headingContainer}>
       <TitleEditable 
         initialContent={activeNote()?.title || ''} 
@@ -33,7 +33,7 @@ function EditorComponent(){
         onChange={(html: string) => updateContent(activeNote()?.id || '', html)}
       />
     </div>
-  </div>
+  </>
 
 }
 

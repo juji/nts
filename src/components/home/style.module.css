@@ -41,9 +41,10 @@
   grid-template-rows: auto 1fr;
   letter-spacing: var(--letter-spacing);
   position: relative;
-  height: calc(100vh - 62px);
+  min-height: calc(100vh - 62px);
+
   @media(min-width: 900px){
-    height: 100vh;
+    min-height: 100vh;
   }
 
   & > div{
